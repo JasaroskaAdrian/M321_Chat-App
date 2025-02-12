@@ -1,0 +1,11 @@
+{
+  "name": "m321_chat-app",
+  "version": "1.0.0",
+  "description": "Chat App for the Module 321",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Adrian Jasaroska",
+  "license": "ISC"
+}
