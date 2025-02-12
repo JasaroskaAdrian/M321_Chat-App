@@ -7,5 +7,10 @@
     "test": "jest"
   },
   "author": "Adrian Jasaroska",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "winston": "^3.17.0"
+  }
 }
