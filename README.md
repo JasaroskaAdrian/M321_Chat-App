@@ -12,6 +12,15 @@ MariaDB
 
 ## Structure of the Application
 
+### How to Print the Project Structure in a File
+*Windows*
+````bash
+Get-ChildItem -Path . -Exclude node_modules -Recurse | Format-Table -AutoSize > structure.txt
+````
+*Linux/MacOS*
+````bash
+tree -I "node_modules" > structure.txt
+````
 
 ## Sources
 

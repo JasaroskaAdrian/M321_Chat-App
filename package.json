@@ -6,11 +6,16 @@
   "scripts": {
     "test": "jest"
   },
+  "type": "module",
   "author": "Adrian Jasaroska",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "http": "^0.0.1-security",
+    "path": "^0.12.7",
+    "url": "^0.11.4",
     "winston": "^3.17.0"
   }
 }
