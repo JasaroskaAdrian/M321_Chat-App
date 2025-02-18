@@ -46,15 +46,15 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '../Client')))
 
 app.get('/dashboard', (req, res) => {
-    res.sendFile(__dirname, "/App/Client/Views/dashboard.html")
+    res.sendFile(path.join(__dirname, "/App/Client/Views/dashboard.html"))
 })
 
 app.get('/login', (req, res) => {
-    res.sendFile(__dirname, "/App/Client/Views/login.html")
+    res.sendFile(path.join(__dirname, "..", "Client", "Views", "login.html"))
 })
 
 app.get('/register', (req, res) => {
-    res.sendFile(__dirname, "/App/Client/Views/register.html")
+    res.sendFile(path.join(__dirname, "/App/Client/Views/register.html"))
 })
 
 server.listen(PORT, () => {

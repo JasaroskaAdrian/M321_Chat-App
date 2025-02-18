@@ -1,0 +1,176 @@
+/* From Uiverse.io by ayyjayy2 */ 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f8ff; /* Optional: background color for better appearance */
+  }
+  
+  /* Prevent scrolling if unnecessary */
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+  .form {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: beige;
+    --main-color: black;
+    padding: 20px;
+    background: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    
+    /* Adjusted proportions for better responsiveness */
+    width: 100%;
+    max-width: 400px; /* Set a maximum fixed width */
+    height: auto; /* Let the height adjust automatically */
+    max-height: none; /* Remove the height restriction */
+  }
+  
+    
+    .title {
+      color: var(--font-color);
+      font-weight: 900;
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .title span {
+      color: var(--font-color-sub);
+      font-weight: 600;
+      font-size: 17px;
+    }
+    
+    .input {
+      width: 250px;
+      height: 40px;
+      border-radius: 5px;
+      border: 2px solid var(--main-color);
+      background-color: var(--bg-color);
+      box-shadow: 4px 4px var(--main-color);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--font-color);
+      padding: 5px 10px;
+      outline: none;
+    }
+    
+    .input::placeholder {
+      color: var(--font-color-sub);
+      opacity: 0.8;
+    }
+    
+    .input:focus {
+      border: 2px solid var(--input-focus);
+    }
+    
+    .login-with {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .button-log {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      border: 2px solid var(--main-color);
+      background-color: var(--bg-color);
+      box-shadow: 4px 4px var(--main-color);
+      color: var(--font-color);
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .icon {
+      width: 24px;
+      height: 24px;
+      fill: var(--main-color);
+    }
+    
+    .button-log:active, .button-confirm:active {
+      box-shadow: 0px 0px var(--main-color);
+      transform: translate(3px, 3px);
+    }
+    
+    .button-confirm {
+      margin: 50px auto 0 auto;
+      width: 120px;
+      height: 40px;
+      border-radius: 5px;
+      border: 2px solid var(--main-color);
+      background-color: var(--bg-color);
+      box-shadow: 4px 4px var(--main-color);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--font-color);
+      cursor: pointer;
+    }
+    
+    /* Shrinks the GitHub logo to 75% of its original size */
+    .Github {
+      transform: scale(0.75);
+      transform-origin: center; /* Keeps the logo centered */
+    }
+  
+    @media (max-width: 768px) {
+      .form {
+        max-width: 90%;
+        max-height: auto;
+        padding: 15px;
+        gap: 15px;
+      }
+    
+      .input {
+        width: 100%;
+        font-size: 14px;
+      }
+    
+      .button-confirm {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+      }
+    
+      .login-with {
+        gap: 10px;
+      }
+    
+      .button-log {
+        width: 35px;
+        height: 35px;
+      }
+    
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .title {
+        font-size: 18px;
+      }
+    
+      .input {
+        font-size: 13px;
+      }
+    
+      .button-confirm {
+        height: 45px;
+        font-size: 14px;
+      }
+    }
+    
