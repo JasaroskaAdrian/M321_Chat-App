@@ -4,7 +4,11 @@
   "description": "Chat App for the Module 321",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev:server": "vite --host 0.0.0.0 --port 4200 ",
+    "dev:client": "livereload client/ -p 35729 -e html,js,css",
+    "build": "vite build",
+    "dev": "vite"
   },
   "type": "module",
   "author": "Adrian Jasaroska",
@@ -16,6 +20,8 @@
     "http": "^0.0.1-security",
     "path": "^0.12.7",
     "url": "^0.11.4",
+    "vite": "^5.4.14",
+    "vite-plugin-node": "^4.0.0",
     "winston": "^3.17.0"
   }
 }
