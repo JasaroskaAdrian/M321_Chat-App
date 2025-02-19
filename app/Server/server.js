@@ -1,6 +1,7 @@
 import express from 'express'
 import http from 'http'
 import winston from 'winston'
+import { Server } from 'socket.io'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -9,6 +10,7 @@ dotenv.config()
 
 const app = express()
 const server = http.createServer(app)
+const io = new Server(server)
 const PORT = process.env.PORT
 
 const __filename = fileURLToPath(import.meta.url)
@@ -46,7 +48,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '../Client')))
 
 app.get('/dashboard', (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "Client", "Views", "dashboard.html"))
+    res.sendFile(path.join(__dirname, "..", "Client", "Views", "index.html"))
 })
 
 app.get('/login', (req, res) => {
@@ -56,6 +58,14 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, "..", "Client", "Views", "register.html"))
 })
+
+//Socket IO
+
+io.on('connection', (socket) => {
+    socket.on('chat message', (msg) => {
+      console.log('message: ' + msg);
+    });
+  });
 
 server.listen(PORT, () => {
     console.log(`Visit the Chat App on http://localhost:${PORT}/login`)
