@@ -17,13 +17,21 @@ MariaDB
 ````bash
 Get-ChildItem -Path . -Exclude node_modules -Recurse | Format-Table -AutoSize > structure.txt
 ````
-*Linux/MacOS*
+*Linux/MacOS* *(Recommended)*
 ````bash
 tree -I "node_modules" > structure.txt
 ````
 
 ## Sources
-
+### Docker
 ````bash
 https://www.docker.com/
+````
+### Prometheus
+````bash
+
+````
+### Grafana
+````bash
+
 ````

@@ -50,6 +50,22 @@ services:
     networks:
       - app_network
 
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3010:3000"
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=supersecret123
 volumes:
   m321_project_mariadb:
 
