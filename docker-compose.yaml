@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.6.4-focal
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - m321_project_mariadb:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=supersecret123
+      - MYSQL_DATABASE=chatdb
+      - MYSQL_USER=chatdb
+      - MYSQL_PASSWORD=supersecret123
+    ports:
+      - "3306:3306"
+    networks:
+      - app_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mariadb
+    restart: always
+    environment:
+      - PMA_HOST=mariadb
+      - PMA_PORT=3306
+      - MYSQL_ROOT_PASSWORD=supersecret123
+    ports:
+      - "9200:80"
+    networks:
+      - app_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mariadb
+    ports:
+      - "4200:4200" # Map Vite's dev server to the host
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USER=chatdb
+      - DB_PASSWORD=supersecret123
+      - DB_NAME=chatdb
+      - JWT_SECRET=supersecretkey
+      - HOST=0.0.0.0 # Ensure the app binds to all interfaces
+    networks:
+      - app_network
+
+volumes:
+  m321_project_mariadb:
+
+networks:
+  app_network:

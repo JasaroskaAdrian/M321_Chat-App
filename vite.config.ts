@@ -1,30 +1,30 @@
-import { defineConfig } from 'vite';
-import { VitePluginNode } from 'vite-plugin-node';
+import { defineConfig } from 'vite'
+import { VitePluginNode } from 'vite-plugin-node'
 
 export default defineConfig({
-  root: 'Client',
+  root: '.',
   optimizeDeps: {
-    exclude: ['fsevents'], // Avoids macOS-specific optional dependency issues
+    exclude: ['fsevents'],
   },
   server: {
-    port: 443, // Vite server for frontend
-    host: '0.0.0.0', // Allows external access
+    port: 4200,
+    host: '0.0.0.0',
     hmr: {
-      protocol: 'ws', // WebSocket protocol for Hot Module Replacement (HMR)
+      protocol: 'ws',
       host: 'localhost',
-      port: 24678, // HMR server port
-      clientPort: 443, // Frontend server port
+      port: 24678,
+      clientPort: 4200
     },
   },
   build: {
-    sourcemap: true, // Useful for debugging in production builds
+    sourcemap: true,
   },
   plugins: [
     ...VitePluginNode({
       adapter: 'express',
-      appPath: './App/Server/server.js', // Path to the Express server
+      appPath: './App/Server/server.js',
       exportName: 'viteNodeApp',
-      tsCompiler: 'esbuild', // TypeScript compiler (optional for JS)
+      tsCompiler: 'esbuild',
     }),
   ],
-});
+})
