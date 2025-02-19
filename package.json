@@ -11,7 +11,8 @@
     "dev:server": "vite --host 0.0.0.0 --port 4200 ",
     "dev:client": "livereload client/ -p 35729 -e html,js,css",
     "build": "vite build",
-    "start": "powershell -Command \"$env:NODE_ENV='production'; node dist/index.cjs\"",
+    "start:ps": "powershell -Command \"$env:NODE_ENV='production'; node dist/server.cjs\"",
+    "start": "NODE_ENV='production' node dist/server.cjs",
     "lint": "eslint --ext .ts server/",
     "prettify": "prettier --write server/**/*.ts"
   },
@@ -20,7 +21,6 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "4.21.1",
-    "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mariadb": "^3.4.0",
     "mysql2": "^3.11.5",

@@ -70,3 +70,5 @@ io.on('connection', (socket) => {
 server.listen(PORT, () => {
     console.log(`Visit the Chat App on http://localhost:${PORT}/login`)
 })
+
+export const viteNodeApp = app
