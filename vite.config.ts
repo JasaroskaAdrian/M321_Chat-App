@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { VitePluginNode } from 'vite-plugin-node'
+import fullReload from 'vite-plugin-full-reload'
 
 export default defineConfig({
   root: '.',
@@ -7,13 +8,13 @@ export default defineConfig({
     exclude: ['fsevents'],
   },
   server: {
-    port: 4200,
+    port: 4300,
     host: '0.0.0.0',
     hmr: {
       protocol: 'ws',
       host: 'localhost',
       port: 24678,
-      clientPort: 4200
+      clientPort: 4300
     },
   },
   build: {
@@ -26,5 +27,6 @@ export default defineConfig({
       exportName: 'viteNodeApp',
       tsCompiler: 'esbuild',
     }),
+    fullReload(['client/**/*', 'server/**/*'])
   ],
 })

@@ -35,3 +35,7 @@ https://www.docker.com/
 ````bash
 
 ````
+### Socket.IO
+````bash
+https://socket.io/docs/v4/tutorial/step-1
+````
