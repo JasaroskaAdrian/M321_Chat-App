@@ -11,7 +11,13 @@ dotenv.config()
 
 const app = express()
 const server = http.createServer(app)
-const io = new Server(server)
+const io = new Server(server, {
+    cors: {
+        origin: ['http://localhost:4200', 'http://localhost:4300'],  // Allow both frontend ports
+        methods: ['GET', 'POST'],  // Specify the methods you need
+        allowedHeaders: ['Authorization', 'Content-Type'],
+    }
+})
 const PORT = process.env.PORT
 
 const __filename = fileURLToPath(import.meta.url)
@@ -33,6 +39,7 @@ const serverLogger = winston.createLogger({
 });
 
 app.use(express.json())
+
 
 app.use(
     cors({
