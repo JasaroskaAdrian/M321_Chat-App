@@ -99,6 +99,9 @@ app.get('/register', (req, res) => {
 io.on('connection', (socket) => {
     console.log('A User connected');
     socket.emit('chat-message', 'Hello World')
+    socket.on('send-chat-message', message => {
+        socket.broadcast.emit('chat-message', message)
+    })
 });
 
 server.listen(PORT, () => {
