@@ -2,18 +2,18 @@ version: '3.8'
 
 services:
   mariadb:
-    image: mariadb:10.6.4-focal
-    command: '--default-authentication-plugin=mysql_native_password'
+    image: mariadb:11.1.2
+    command: "--default-authentication-plugin=mysql_native_password"
     volumes:
       - m321_project_mariadb:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=supersecret123
-      - MYSQL_DATABASE=chatdb
-      - MYSQL_USER=chatdb
-      - MYSQL_PASSWORD=supersecret123
+      - MYSQL_DATABASE=mychat
+      - MYSQL_USER=mychat
+      - MYSQL_PASSWORD=mychatpassword
     ports:
-      - "3306:3306"
+      - 3306:3306
     networks:
       - app_network
 
@@ -38,15 +38,16 @@ services:
     depends_on:
       - mariadb
     ports:
-      - "4300:4200" # Map Vite's dev server to the host
+      - "4200:4200" # Map Vite's dev server to the host
     environment:
       - DB_HOST=mariadb
       - DB_PORT=3306
-      - DB_USER=chatdb
-      - DB_PASSWORD=supersecret123
-      - DB_NAME=chatdb
+      - DB_USER=mychat
+      - DB_PASSWORD=mychatpassword
+      - DB_NAME=mychat
+
       - JWT_SECRET=supersecretkey
-      - HOST=0.0.0.0 # Ensure the app binds to all interfaces
+      - HOST=0.0.0.0 # Ensures the app binds to all interfaces
     networks:
       - app_network
 

@@ -5,8 +5,9 @@ import { Server } from 'socket.io'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import dotenv from 'dotenv'
+import { initializeMariaDB, initializeDBSchema } from './Database/database'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
@@ -104,8 +105,17 @@ io.on('connection', (socket) => {
     })
 });
 
-server.listen(PORT, () => {
-    serverLogger.info(`Visit the Chat App on http://localhost:${PORT}/login`);
-});
+;(async function () {
+    initializeMariaDB()
+    try {
+        await initializeDBSchema()
+    } catch (error) {
+        console.error("Failed to initialize DBschema")
+    }
+    server.listen(PORT, () => {
+        serverLogger.info(`Visit the Chat App on http://localhost:${PORT}/login`);
+    });
+})();
+
 
 export const viteNodeApp = app
