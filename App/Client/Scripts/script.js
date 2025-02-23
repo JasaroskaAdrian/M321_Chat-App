@@ -168,7 +168,7 @@ messageForm.addEventListener('submit', (e) => {
     const content = messageInput.value.trim();
     if (!content || !socket) return;
     
-    socket.emit('chat-message', {
+    socket.emit('send-chat-message', {
         content,
         timestamp: new Date().toISOString()
     });

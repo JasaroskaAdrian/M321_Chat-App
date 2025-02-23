@@ -105,10 +105,7 @@ const authenticateUser = (req, res, next) => {
 };
 
 // Static HTML routes
-app.get('/dashboard', authenticateUser, (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "Client", "Views", "index.html"));
-});
-app.get('/dashboard', authenticateUser, (req, res) => {
+app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, "..", "Client", "Views", "index.html"));
 });
 
@@ -119,6 +116,7 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname, "..", "Client", "Views", "register.html"))
 })
+app.get('/')
 
 // Registration endpoint
 app.post('/auth/register', async (req, res) => {

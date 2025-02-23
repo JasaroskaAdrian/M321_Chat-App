@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 // Registration successful, redirect to login
-                window.location.href = '/login';
+                window.location.href = '/dashboard';
             } else {
                 // Show error message
                 if (errorDisplay) {

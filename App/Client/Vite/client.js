@@ -52,7 +52,7 @@ async function register(username, password) {
         if (!response.ok) throw new Error('Registration failed');
         
         showNotification('Registration successful! Please login.', 'success');
-        window.location.href = '/login';
+        window.location.href = '/dashboard';
     } catch (error) {
         showNotification('Registration failed: ' + error.message, 'error');
     }
@@ -176,8 +176,8 @@ function showNotification(message, type) {
 // Token Management
 function checkAuth() {
     const token = localStorage.getItem('token');
-    if (!token && window.location.pathname !== '/login' && window.location.pathname !== '/register') {
-        window.location.href = '/login';
+    if (!token && window.location.pathname !== '/dashboard' && window.location.pathname !== '/register') {
+        window.location.href = '/dashboard';
     }
 }
 
