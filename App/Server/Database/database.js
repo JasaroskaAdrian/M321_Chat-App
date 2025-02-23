@@ -41,9 +41,10 @@ const executeSQL = async (query, params) => {
     conn = await pool.getConnection()
     const res = await conn.query(query, params)
     return res
-  } catch (err) {
-    console.log(err)
-  } finally {
+} catch (err) {
+console.error('Database error:', err)
+throw err
+} finally {
     if (conn) conn.release()
   }
 }
@@ -54,19 +55,21 @@ const executeSQL = async (query, params) => {
  * Useful for the first time setup.
  */
 const initializeDBSchema = async () => {
-  const userTableQuery = `CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-  );`
+const userTableQuery = `CREATE TABLE IF NOT EXISTS users (
+id INT PRIMARY KEY AUTO_INCREMENT,
+username VARCHAR(255) NOT NULL UNIQUE,
+password_hash VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);`
   await executeSQL(userTableQuery)
-  const messageTableQuery = `CREATE TABLE IF NOT EXISTS messages (
-    id INT NOT NULL AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    message VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  );`
+const messageTableQuery = `CREATE TABLE IF NOT EXISTS messages (
+id INT NOT NULL AUTO_INCREMENT,
+sender_id INT NOT NULL,
+content TEXT NOT NULL,
+timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (id),
+FOREIGN KEY (sender_id) REFERENCES users(id)
+);`
   await executeSQL(messageTableQuery)
 }
 
