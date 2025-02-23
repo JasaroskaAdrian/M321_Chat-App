@@ -58,14 +58,14 @@ body {
     transition: all 0.2s ease;
 }
 
-#message-container div:nth-child(2n) {
+#message-container .sent-message {
     background-color: var(--sent-msg-bg);
     color: white;
     align-self: flex-end;
     border-bottom-right-radius: 0.25rem;
 }
 
-#message-container div:nth-child(2n+1) {
+#message-container .received-message {
     background-color: var(--received-msg-bg);
     color: var(--text-color);
     align-self: flex-start;
