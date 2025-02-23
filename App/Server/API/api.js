@@ -58,15 +58,15 @@ try {
 
 router.post('/login', async (req, res) => {
 try {
-    const { email, password } = req.body;
-    
+    const { username, password } = req.body;
+
     // Validate input
-    if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password are required' });
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Username and password are required' });
     }
-    
+
     // Check if user exists
-    const users = await executeSQL('SELECT * FROM users WHERE email = ?', [email]);
+    const users = await executeSQL('SELECT * FROM users WHERE username = ?', [username]);
     if (users.length === 0) {
     return res.status(401).json({ error: 'Invalid credentials' });
     }

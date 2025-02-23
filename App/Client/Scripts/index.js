@@ -1,4 +1,10 @@
-const socket = io('http://localhost:4200')
+const token = localStorage.getItem('token');
+console.log('Retrieved token for socket connection. Token exists:', !!token, 'Token starts with:', token?.substring(0, 10));
+
+const socket = io('http://localhost:4200', {
+    auth: { token }
+});
+console.log('Attempting socket connection with token...');
 const messageForm = document.getElementById('send-container')
 const messageContainer = document.getElementById('message-container')
 const messageInput = document.getElementById('message-input')
